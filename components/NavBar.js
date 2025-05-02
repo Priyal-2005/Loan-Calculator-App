@@ -7,4 +7,4 @@ export default function NavBar() {
         <a href="/visualize">Visualize</a>
       </nav>
     );
-  }
+}
