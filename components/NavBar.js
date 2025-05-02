@@ -4,7 +4,7 @@ export default function NavBar() {
   return (
     <nav>
       <div className="navbar-container">
-        <div className="navbar-brand">LoanCalc</div>
+        <div className="navbar-brand">LoanMate</div>
         <div className="navbar-links">
           <Link href="/calculator">Calculator</Link>
           <Link href="/compare">Compare</Link>
