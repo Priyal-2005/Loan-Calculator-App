@@ -5,7 +5,7 @@
 Smart Loan Calculator & Comparison Tool
 
 ### Project Summary:
-A frontend web app to calculate loan payments, display Monthly Payment Schedule schedules, and compare multiple loan options. It helps users visualize interest vs principal and make informed borrowing decisions.
+A responsive frontend web application that calculates loan payments, displays amortization schedules, and allows users to compare multiple loan options. The app is designed to assist users in understanding their loan commitments with visual breakdowns and real-time updates.
 
 ### Features of Your Project:
 * Calculate monthly loan payments based on principal, interest rate, and duration
