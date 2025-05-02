@@ -1,4 +1,10 @@
-# Loan-Calculator-App
+# LoanMate
+## A loan calculator app
+
+### Project Title
+Smart Loan Calculator & Comparison Tool
+
+### Project Summary:
 A frontend web app to calculate loan payments, display Monthly Payment Schedule schedules, and compare multiple loan options. It helps users visualize interest vs principal and make informed borrowing decisions.
 
 ### Features of Your Project:
