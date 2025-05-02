@@ -1,39 +1,8 @@
-import React, { useState } from "react";
-import "./global.css"
-import LoanForm from "./components/LoanForm";
-import ResultCard from "./components/ResultCard";
-import AmortizationTable from "./components/AmortizationTable";
-
-function App() {
-  const [loanDetails, setLoanDetails] = useState({
-    emi: 0,
-    totalInterest: 0,
-    totalAmount: 0,
-  });
-
-  const [schedule, setSchedule] = useState([]);
-
-  const handleCalculation = (details, paymentSchedule) => {
-    setLoanDetails(details);
-    setSchedule(paymentSchedule);
-  };
-
+export default function Home() {
   return (
-    <div className="App">
-      <h1>Loan Calculator</h1>
-      <LoanForm onCalculate={handleCalculation} />
-      {loanDetails.emi > 0 && (
-        <>
-          <ResultCard
-            emi={loanDetails.emi}
-            totalInterest={loanDetails.totalInterest}
-            totalAmount={loanDetails.totalAmount}
-          />
-          <AmortizationTable schedule={schedule} />
-        </>
-      )}
-    </div>
+    <main style={{ padding: "2rem" }}>
+      <h1>Welcome to the Loan Calculator App</h1>
+      <p>Go to /calculator to calculate your loan details.</p>
+    </main>
   );
 }
-
-export default App;
