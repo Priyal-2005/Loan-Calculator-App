@@ -1,20 +1,35 @@
+'use client';
 import React, { useState } from "react";
-import LoanForm from "../components/LoanForm"
-
+import LoanForm from "@/components/LoanForm";
+import ResultCard from "@/components/ResultCard";
+import AmortizationTable from "@/components/AmortizationTable";
 
 export default function CalculatorPage() {
-  const [result, setResult] = useState(null);
+  const [loanDetails, setLoanDetails] = useState({
+    emi: 0,
+    totalInterest: 0,
+    totalAmount: 0,
+  });
+
+  const [schedule, setSchedule] = useState([]);
+
+  const handleCalculation = (details, paymentSchedule) => {
+    setLoanDetails(details);
+    setSchedule(paymentSchedule);
+  };
 
   return (
     <div style={{ padding: "2rem" }}>
-      <LoanForm onResult={setResult} />
-      {result && (
-        <div style={{ marginTop: "2rem" }}>
-          <h3>Loan Summary</h3>
-          <p><strong>Monthly Payment:</strong> ₹{result?.monthlyPayment}</p>
-          <p><strong>Total Interest:</strong> ₹{result?.totalInterest}</p>
-          <p><strong>Total Payment:</strong> ₹{result?.totalPayment}</p>
-        </div>
+      <LoanForm onCalculate={handleCalculation} />
+      {loanDetails.emi > 0 && (
+        <>
+          <ResultCard
+            emi={loanDetails.emi}
+            totalInterest={loanDetails.totalInterest}
+            totalAmount={loanDetails.totalAmount}
+          />
+          <AmortizationTable schedule={schedule} />
+        </>
       )}
     </div>
   );
