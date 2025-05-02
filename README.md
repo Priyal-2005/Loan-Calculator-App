@@ -1,7 +1,7 @@
 # Loan-Calculator-App
 A frontend web app to calculate loan payments, display Monthly Payment Schedule schedules, and compare multiple loan options. It helps users visualize interest vs principal and make informed borrowing decisions.
 
-## Features of Your Project:
+### Features of Your Project:
 * Calculate monthly loan payments based on principal, interest rate, and duration
 
 * Display full amortization schedules (principal vs interest)
@@ -17,11 +17,11 @@ A frontend web app to calculate loan payments, display Monthly Payment Schedule 
 * Auto-suggest interest rates using Finbox API
 
 
-## Number of Pages in Your Website:
+### Number of Pages in Your Website:
 5
 
 
-## Pages (routes) name and Components:
+### Pages (routes) name and Components:
 * Home Page (4): Navbar, Intro Section, How It Works, Footer
 
 * Loan Calculator Page (5): Navbar, Input Form (principal, rate, term), Monthly Payment Output, Amortization Table, Footer
@@ -35,7 +35,7 @@ A frontend web app to calculate loan payments, display Monthly Payment Schedule 
 * API Rates Page (3): Navbar, Real-time Rates Card (from Finbox API), Footer
 
 
-## Tech Stack for the Project:
+### Tech Stack for the Project:
 * HTML, CSS, JavaScript
 
 * React
