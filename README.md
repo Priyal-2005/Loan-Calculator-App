@@ -31,3 +31,15 @@ Visualization Page (4): Navbar, Chart (Interest vs Principal), Insights Section,
 Export Page (3): Navbar, Export Buttons (CSV, PDF), Success Message
 
 API Rates Page (3): Navbar, Real-time Rates Card (from Finbox API), Footer
+
+
+Tech Stack for the Project:
+HTML, CSS, JavaScript
+
+React
+
+Next.js (for routing and pages)
+
+Chart.js or Recharts (for graphs)
+
+localStorage (for saving loan inputs and comparisons)
