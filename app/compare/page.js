@@ -1,8 +1,13 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 
-const Compare = ({ loan1, loan2 }) => {
+export default function ComparePage() {
+  const [loan1, setLoan1] = useState({ emi: 0, total: 0 });
+  const [loan2, setLoan2] = useState({ emi: 0, total: 0 });
+
+  // Mock or actual data — replace this with user input forms later
   return (
-    <div className="compare-section">
+    <div className="compare-section" style={{ padding: '2rem' }}>
       <h2>Loan Comparison</h2>
       <div>
         <h3>Loan 1</h3>
@@ -16,6 +21,4 @@ const Compare = ({ loan1, loan2 }) => {
       </div>
     </div>
   );
-};
-
-export default Compare;
+}
