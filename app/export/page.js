@@ -1,7 +1,7 @@
-'use client'
+"use client"
 import React from 'react'
 
-export const page = () => {
+export const exportPage = () => {
   return (
     <div>page</div>
   )
