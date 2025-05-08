@@ -1,6 +1,6 @@
 export default function HomePage() {
   return (
-    <main style={{ padding: "2rem" }}>
+    <main style={{ padding: "2rem" }} className="intro">
       <h1>💼 Welcome to LoanMate</h1>
       <h3>A smart loan calculator app</h3>
       <h5>Take control of your finances with our all-in-one loan management tool. Whether you're planning a personal loan, home loan, or car loan — we make it simple and stress-free to understand your repayment journey.</h5>
