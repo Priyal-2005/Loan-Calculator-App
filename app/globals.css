@@ -146,6 +146,25 @@ text-align: center;
     font-weight: 500;
 }
 
+.navbar-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.logout-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+}
+  
+.logout-btn:hover {
+    color: #ff4747;
+}
 
 footer {
     padding: 1rem;
