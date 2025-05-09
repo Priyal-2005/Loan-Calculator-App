@@ -1,22 +1,32 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const router = useRouter();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const user = JSON.parse(localStorage.getItem('user'));
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      if (user) {
+        router.push('/');
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
-    if (user && user.email === email && user.password === password) {
-      localStorage.setItem('loggedIn', 'true');
-      alert('Login successful!');
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
       router.push('/');
-    } else {
+    } catch (error) {
       alert('Invalid email or password.');
+      console.error("Login Error:", error);
     }
   };
 
@@ -38,8 +48,11 @@ export default function LoginPage() {
           onChange={(e) => setPassword(e.target.value)} 
           required 
         />
-        <button type="submit">Log In</button>
+        <button type="submit">Login</button>
       </form>
+      <p>
+        New user? <Link href="/signup">Sign Up</Link>
+      </p>
     </div>
   );
 }

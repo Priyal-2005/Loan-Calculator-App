@@ -2,20 +2,29 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { auth } from "@/lib/firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 export default function NavBar() {
   const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('loggedIn') === 'true';
-    setLoggedIn(isLoggedIn);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setLoggedIn(!!user);
+    });
+
+    return () => unsubscribe();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('loggedIn');
-    setLoggedIn(false);
-    router.push('/');
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      router.push('/signup');
+      setLoggedIn(false);
+    } catch (error) {
+      console.error('Error logging out: ', error);
+    }
   };
 
   return (
@@ -35,8 +44,8 @@ export default function NavBar() {
             </button>
           ) : (
             <>
+              <Link href="/signup">Sign Up</Link>
               <Link href="/login">Login</Link>
-              <Link href="/signup">Signup</Link>
             </>
           )}
         </div>
