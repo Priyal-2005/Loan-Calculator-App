@@ -14,32 +14,20 @@ export default function LoanForm({ onCalculate }) {
   
     if (!P || !r || !n) return;
   
-    try {
-      const response = await fetch("https://www.amortization-api.com/api/v1/schedule", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          loan_amount: P,
-          interest_rate: r,
-          loan_term_months: n * 12
-        })
-      });
-  
-      const data = await response.json();
-  
-      onCalculate(
-        {
-          emi: data.emi.toFixed(2),
-          totalAmount: data.total_payment.toFixed(2),
-          totalInterest: data.total_interest.toFixed(2),
-        },
-        data.schedule
-      );
-    } catch (error) {
-      console.error("API call failed:", error);
-    }
+    const monthlyRate = r / 12 / 100;
+    const numPayments = n * 12;
+    const emi = P * monthlyRate * Math.pow(1 + monthlyRate, numPayments) / (Math.pow(1 + monthlyRate, numPayments) - 1);
+    const totalAmount = emi * numPayments;
+    const totalInterest = totalAmount - P;
+
+    onCalculate(
+      {
+        emi: emi.toFixed(2),
+        totalAmount: totalAmount.toFixed(2),
+        totalInterest: totalInterest.toFixed(2),
+      },
+      [] // no schedule since we're not using an API
+    );
   };
 
   return (

@@ -1,35 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 const AmortizationTable = () => {
-  const [schedule, setSchedule] = useState([]);
+  const loanAmount = 100000;
+  const annualRate = 10;
+  const loanTermMonths = 12;
 
-  useEffect(() => {
-    const fetchSchedule = async () => {
-      try {
-        const response = await fetch("https://www.amortization-api.com/api/v1/schedule", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify({
-            loan_amount: 100000,
-            interest_rate: 10,
-            loan_term_months: 12
-          })
-        });
+  const monthlyRate = annualRate / 12 / 100;
+  const emi = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, loanTermMonths) / (Math.pow(1 + monthlyRate, loanTermMonths) - 1);
 
-        const result = await response.json();
-        setSchedule(result.schedule || []);
-      } catch (error) {
-        console.error("Failed to fetch amortization schedule:", error);
-      }
-    };
+  const schedule = [];
+  let balance = loanAmount;
 
-    fetchSchedule();
-  }, []);
+  for (let month = 1; month <= loanTermMonths; month++) {
+    const interest = balance * monthlyRate;
+    const principal = emi - interest;
+    balance -= principal;
 
-  if (!Array.isArray(schedule) || schedule.length === 0) {
-    return <p>No amortization schedule to display.</p>;
+    schedule.push({
+      month,
+      principal_payment: principal.toFixed(2),
+      interest_payment: interest.toFixed(2),
+      remaining_balance: balance > 0 ? balance.toFixed(2) : "0.00",
+    });
   }
 
   return (

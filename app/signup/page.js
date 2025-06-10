@@ -27,8 +27,8 @@ export default function SignupPage() {
         await createUserWithEmailAndPassword(auth, email, password);
         router.push('/');
       } catch (error) {
-        alert('Error creating account. Please try again.');
-        console.error("Signup Error:", error);
+        console.error("Signup Error:", error.code, error.message);
+        alert(`Signup failed: ${error.message}`);
       }
     } else {
       alert('Please enter a valid email and password.');
