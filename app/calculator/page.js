@@ -7,6 +7,8 @@ import AmortizationTable from "@/components/AmortizationTable";
 export default function CalculatorPage() {
   const [loanDetails, setLoanDetails] = useState({
     emi: 0,
+    convertedEMI: null,
+    currency: "INR",
     totalInterest: 0,
     totalAmount: 0,
   });
@@ -25,6 +27,8 @@ export default function CalculatorPage() {
         <>
           <ResultCard
             emi={loanDetails.emi}
+            convertedEMI={loanDetails.convertedEMI}
+            currency={loanDetails.currency}
             totalInterest={loanDetails.totalInterest}
             totalAmount={loanDetails.totalAmount}
           />
