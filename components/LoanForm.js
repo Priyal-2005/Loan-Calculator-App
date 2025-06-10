@@ -5,47 +5,41 @@ export default function LoanForm({ onCalculate }) {
   const [rate, setRate] = useState("");
   const [years, setYears] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const P = parseFloat(principal);
     const r = parseFloat(rate);
     const n = parseFloat(years);
-
+  
     if (!P || !r || !n) return;
-
-    const monthlyRate = r / 12 / 100;
-    const totalMonths = n * 12;
-
-    const emi = (P * monthlyRate * Math.pow(1 + monthlyRate, totalMonths)) / (Math.pow(1 + monthlyRate, totalMonths) - 1);
-    const totalPayment = emi * totalMonths;
-    const totalInterest = totalPayment - P;
-
-    // Create amortization schedule
-    let balance = P;
-    const amortizationSchedule = [];
-
-    for (let i = 1; i <= totalMonths; i++) {
-      const interestPayment = balance * monthlyRate;
-      const principalPayment = emi - interestPayment;
-      balance -= principalPayment;
-
-      amortizationSchedule.push({
-        month: i,
-        principal: principalPayment.toFixed(2),
-        interest: interestPayment.toFixed(2),
-        balance: balance > 0 ? balance.toFixed(2) : "0.00"
+  
+    try {
+      const response = await fetch("https://www.amortization-api.com/api/v1/schedule", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          loan_amount: P,
+          interest_rate: r,
+          loan_term_months: n * 12
+        })
       });
+  
+      const data = await response.json();
+  
+      onCalculate(
+        {
+          emi: data.emi.toFixed(2),
+          totalAmount: data.total_payment.toFixed(2),
+          totalInterest: data.total_interest.toFixed(2),
+        },
+        data.schedule
+      );
+    } catch (error) {
+      console.error("API call failed:", error);
     }
-
-    onCalculate(
-      {
-        emi: emi.toFixed(2),
-        totalAmount: totalPayment.toFixed(2),
-        totalInterest: totalInterest.toFixed(2),
-      },
-      amortizationSchedule
-    );
   };
 
   return (
