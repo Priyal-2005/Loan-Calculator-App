@@ -29,7 +29,6 @@ export default function CalculatorPage() {
     const csvRows = [];
     csvRows.push("Loan Amount,Interest Rate,Loan Term (months),EMI,Total Interest,Total Payment");
     csvRows.push(`-, -, -, ${loanDetails.emi}, ${loanDetails.totalInterest}, ${loanDetails.totalAmount}`);
-
     csvRows.push("\nMonth,Principal,Interest,Balance");
     schedule.forEach((entry) => {
       csvRows.push(`${entry.month},${entry.principal_payment},${entry.interest_payment},${entry.remaining_balance}`);
@@ -42,8 +41,7 @@ export default function CalculatorPage() {
     a.download = "loan_calculator_export.csv";
     a.click();
     URL.revokeObjectURL(url);
-  }
-  }
+  }; // ✅ Correctly ends here
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -58,8 +56,22 @@ export default function CalculatorPage() {
             totalAmount={loanDetails.totalAmount}
           />
           <AmortizationTable schedule={schedule} />
-          <button onClick={handleClick} style={{marginTop: "1rem",padding: "10px 16px", backgroundColor: "#0070f3", color: "white", border: "none", borderRadius: "5px", cursor: "pointer"}}>📤 Export as CSV</button>
+          <button
+            onClick={handleClick}
+            style={{
+              marginTop: "1rem",
+              padding: "10px 16px",
+              backgroundColor: "#0070f3",
+              color: "white",
+              border: "none",
+              borderRadius: "5px",
+              cursor: "pointer",
+            }}
+          >
+            📤 Export as CSV
+          </button>
         </>
       )}
     </div>
   );
+}
