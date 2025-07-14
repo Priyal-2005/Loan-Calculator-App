@@ -16,11 +16,11 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
+    min-height: 100vh;
 }
 
 main {
     flex: 1;
-    min-height: calc(100vh - 140px);
 }
 
 /* Container utilities */
@@ -551,8 +551,7 @@ footer {
     color: #718096;
     font-size: 0.9rem;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
-    margin-top: 2rem;
-    position: relative;
+    margin-top: auto;
 }
 
 /* Responsive design */
