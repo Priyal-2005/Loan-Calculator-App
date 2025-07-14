@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 
-export const visualizePage = () => {
+export default function VisualizePage() {
   return (
     <div>page</div>
   )
