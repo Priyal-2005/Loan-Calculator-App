@@ -56,20 +56,14 @@ export default function CalculatorPage() {
             totalAmount={loanDetails.totalAmount}
           />
           <AmortizationTable schedule={schedule} />
-          <button
-            onClick={handleClick}
-            style={{
-              marginTop: "1rem",
-              padding: "10px 16px",
-              backgroundColor: "#0070f3",
-              color: "white",
-              border: "none",
-              borderRadius: "5px",
-              cursor: "pointer",
-            }}
-          >
-            📤 Export as CSV
-          </button>
+          <div style={{ textAlign: "center", marginTop: "2rem" }}>
+            <button
+              onClick={handleClick}
+              className="export-btn"
+            >
+              📤 Export Table as CSV
+            </button>
+          </div>
         </>
       )}
     </div>

@@ -43,8 +43,28 @@ export default function LoanForm({ onCalculate }) {
         totalAmount: totalAmount.toFixed(2),
         totalInterest: totalInterest.toFixed(2),
       },
-      []
+      generateAmortizationSchedule(P, monthlyRate, numPayments, emi)
     );
+  };
+
+  const generateAmortizationSchedule = (principal, monthlyRate, numPayments, emi) => {
+    const schedule = [];
+    let balance = principal;
+
+    for (let month = 1; month <= numPayments; month++) {
+      const interest = balance * monthlyRate;
+      const principalPayment = emi - interest;
+      balance -= principalPayment;
+
+      schedule.push({
+        month,
+        principal_payment: principalPayment.toFixed(2),
+        interest_payment: interest.toFixed(2),
+        remaining_balance: balance > 0 ? balance.toFixed(2) : "0.00",
+      });
+    }
+
+    return schedule;
   };
 
   return (
