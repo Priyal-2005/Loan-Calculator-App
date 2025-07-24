@@ -36,7 +36,6 @@ export default function NavBar() {
         <div className="navbar-links">
           <Link href="/calculator">Calculator</Link>
           <Link href="/compare">Compare</Link>
-          <Link href="/visualize">Visualize</Link>
           {loggedIn ? (
             <button className="logout-btn" onClick={handleLogout}>
               Logout
