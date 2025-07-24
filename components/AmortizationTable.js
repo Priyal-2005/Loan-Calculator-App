@@ -1,27 +1,8 @@
 import React from 'react';
 
-const AmortizationTable = () => {
-  const loanAmount = 100000;
-  const annualRate = 10;
-  const loanTermMonths = 12;
-
-  const monthlyRate = annualRate / 12 / 100;
-  const emi = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, loanTermMonths) / (Math.pow(1 + monthlyRate, loanTermMonths) - 1);
-
-  const schedule = [];
-  let balance = loanAmount;
-
-  for (let month = 1; month <= loanTermMonths; month++) {
-    const interest = balance * monthlyRate;
-    const principal = emi - interest;
-    balance -= principal;
-
-    schedule.push({
-      month,
-      principal_payment: principal.toFixed(2),
-      interest_payment: interest.toFixed(2),
-      remaining_balance: balance > 0 ? balance.toFixed(2) : "0.00",
-    });
+const AmortizationTable = ({ schedule }) => {
+  if (!schedule || schedule.length === 0) {
+    return null;
   }
 
   return (
