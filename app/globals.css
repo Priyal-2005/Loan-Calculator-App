@@ -1,4 +1,3 @@
-/* Reset and base styles */
 * {
     margin: 0;
     padding: 0;
@@ -23,14 +22,12 @@ main {
     flex: 1;
 }
 
-/* Container utilities */
 .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-/* Intro section styling */
 .intro {
     padding: 3rem 2rem;
     background: rgba(255, 255, 255, 0.95);
@@ -87,7 +84,6 @@ main {
     color: #4a5568;
 }
 
-/* Button styling */
 button {
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -110,7 +106,6 @@ button:active {
     transform: translateY(0);
 }
 
-/* Primary button */
 .btn-primary, button[style*="007bff"] {
     background: linear-gradient(135deg, #667eea, #764ba2) !important;
     color: white !important;
@@ -121,7 +116,6 @@ button:active {
     background: linear-gradient(135deg, #5a6fd8, #6a4190) !important;
 }
 
-/* Success button */
 .btn-success, button[style*="28a745"] {
     background: linear-gradient(135deg, #48bb78, #38a169) !important;
     color: white !important;
@@ -132,7 +126,6 @@ button:active {
     background: linear-gradient(135deg, #38a169, #2f855a) !important;
 }
 
-/* Danger button */
 .btn-danger, button[style*="dc3545"] {
     background: linear-gradient(135deg, #f56565, #e53e3e) !important;
     color: white !important;
@@ -618,8 +611,6 @@ footer {
         font-size: 0.95rem;
     }
 }
-
-/* Loading and transition effects */
 .fade-in {
     animation: fadeIn 0.5s ease-in;
 }
@@ -634,23 +625,3 @@ footer {
         transform: translateY(0);
     }
 }
-
-/* Utility classes */
-.text-center {
-    text-align: center;
-}
-
-.mt-1 { margin-top: 0.25rem; }
-.mt-2 { margin-top: 0.5rem; }
-.mt-3 { margin-top: 1rem; }
-.mt-4 { margin-top: 1.5rem; }
-
-.mb-1 { margin-bottom: 0.25rem; }
-.mb-2 { margin-bottom: 0.5rem; }
-.mb-3 { margin-bottom: 1rem; }
-.mb-4 { margin-bottom: 1.5rem; }
-
-.p-1 { padding: 0.25rem; }
-.p-2 { padding: 0.5rem; }
-.p-3 { padding: 1rem; }
-.p-4 { padding: 1.5rem; }
